@@ -32,7 +32,6 @@ case class Pixels(r: Int, g: Int, b: Int) {
 }
 
 object Pixels {
-
   def limiter(limiter: Int): Int = {
     if limiter <= 0 then 0
     else if limiter > 256 then 255
@@ -40,6 +39,10 @@ object Pixels {
   } //this will make sure the new pixel value stays within 0-255 range
 
   def main(args: Array[String]): Unit = {
+    val red = Pixels(255, 0, 0)
+    val blue = Pixels(0, 0, 255)
+    val purple = red + blue
+    purple.drawImage(100, 50, "src/main/resources/Pixels/purple.jpg")
 
   }
 }
