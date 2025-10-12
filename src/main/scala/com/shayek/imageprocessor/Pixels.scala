@@ -49,7 +49,10 @@ object Pixels {
 
   def main(args: Array[String]): Unit = {
     val purple = RED + BLUE
-    purple.drawImage(100, 50, "src/main/resources/Pixels/anotherPurple.jpg")
+    val lightPurple = Transparency(0.3).combine(BLUE,WHITE)
+    val darkBlue = Multiply.combine(BLUE,GREY)
+    val lightBlue = Screen.combine(BLUE,GREY)
+    lightBlue.drawImage(100, 50, "src/main/resources/Pixels/lightblue.jpg")
 
   }
 }
