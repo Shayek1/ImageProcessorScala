@@ -34,14 +34,14 @@ object Multiply extends Blending {
 }
 
 //screen formula - front layer + back layer - ( front layer * back layer)
-//into pixel value - front layer + back layer - ((front layer * back layer)/255)
+//have to change into pixel value
 object Screen extends Blending{
 
   override def combine(front: Pixels, back: Pixels): Pixels =
     Pixels(
-      (front.r + back.r - ((front.r - back.r)/255)).toInt,
-      (front.g + back.g - ((front.g - back.g)/255)).toInt,
-      (front.b + back.b - ((front.b - back.b)/255)).toInt,
+      (255 - ((255 - front.r)*(255 - back.r)/255.0)).toInt,
+      (255 - ((255 - front.g)*(255 - back.g)/255.0)).toInt,
+      (255 - ((255 - front.b)*(255 - back.b)/255.0)).toInt,
     )
 
 }
