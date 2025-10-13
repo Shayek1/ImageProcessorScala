@@ -47,6 +47,14 @@ object Pixels {
     else limiter
   } //this will make sure the new pixel value stays within 0-255 range
 
+  def hexForm(colour: Int): Pixels = {
+    Pixels(
+    (colour & 0xFF0000) >> 16,
+    (colour & 0xFF00) >> 8,
+    (colour & 0xFF)
+    )
+  }
+  
   def main(args: Array[String]): Unit = {
     val purple = RED + BLUE
     val lightPurple = Transparency(0.3).combine(BLUE,WHITE)
