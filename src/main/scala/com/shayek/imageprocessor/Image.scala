@@ -16,6 +16,20 @@ case class Image private(private val buffImage: BufferedImage) {
     buffImage.setRGB(xRow, yRow, p.intForm)
   }
 
+  def crop(firstX: Int, firstY: Int, w: Int, h: Int): Image = {
+    assert(
+      firstX >= 0 && 
+        firstY >= 0 && 
+        w > 0 && h > 0 &&
+        firstX + w < width && firstY + h < height
+    )
+    val newPixels = Array.fill(h * w)(0)
+    buffImage.getRGB(firstX, firstY, w, h, newPixels, 0,w)
+    val newBuffImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
+    newBuffImage.setRGB(0, 0, w, h, newPixels, 0, w)
+    new Image(newBuffImage)
+  }
+
   def save(location: String): Unit = {
     ImageIO.write(buffImage,"JPG", new File(location))
   }
@@ -31,5 +45,9 @@ object Image {
   }
   def loadAtResources(location: String): Image ={
     load(s"src/main/resources/$location")
+  }
+
+  def main(args: Array[String]): Unit = {
+
   }
 }
