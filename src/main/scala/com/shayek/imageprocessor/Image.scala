@@ -25,7 +25,7 @@ case class Image private(private val buffImage: BufferedImage) {
     )
     val newPixels = Array.fill(h * w)(0)
     buffImage.getRGB(firstX, firstY, w, h, newPixels, 0,w)
-    val newBuffImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
+    val newBuffImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB)
     newBuffImage.setRGB(0, 0, w, h, newPixels, 0, w)
     new Image(newBuffImage)
   }
@@ -49,6 +49,6 @@ object Image {
 
   def main(args: Array[String]): Unit = {
 
-    loadAtResources("nature.jpg").crop(600, 100, 300, 300).saveAtResources("natureCropped.jpg")
+    loadAtResources("nature.jpg").crop(600, 100, 300, 300).saveAtResources("natureCroppedFix.jpg")
   }
 }
