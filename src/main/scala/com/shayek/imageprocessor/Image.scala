@@ -49,5 +49,6 @@ object Image {
 
   def main(args: Array[String]): Unit = {
 
+    loadAtResources("nature.jpg").crop(600, 100, 300, 300).saveAtResources("natureCropped.jpg")
   }
 }
