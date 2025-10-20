@@ -37,6 +37,20 @@ case class Image private(private val buffImage: BufferedImage) {
   def saveAtResources(location: String): Unit = {
     save(s"src/main/resources/$location")
   }
+  
+  def transformMap(function: Pixels => Pixels): Image = {
+    val newPixels  = Array.fill(height * width)(0)
+    buffImage.getRGB(0,0,width,height, newPixels, 0, width)
+    newPixels.mapInPlace{ colour =>
+      val pixel = Pixels.hexForm(colour)
+      val newPixel = function(pixel)
+      newPixel.intForm
+    }
+    
+    val newBuffImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)
+    newBuffImage.setRGB(0,0,width, height,newPixels, 0, width)
+    new Image(newBuffImage)
+  }
 }
 
 object Image {
