@@ -18,7 +18,7 @@ case class Crop(x: Int, y: Int, w: Int, h:Int) extends Transform{
 
 case object Invert extends Transform{
   override def apply(image: Image): Image =
-    image.transformMap{pixel => 
+    image.transformMap{pixel =>
       Pixels(
         255 - pixel.r, 255 - pixel.g, 255 - pixel.b
       )}
@@ -36,6 +36,7 @@ case object Greyscale extends Transform {
 
 object Transform {
   def main(args: Array[String]): Unit = {
-    
+    //Invert(Image.loadAtResources("nature.jpg")).saveAtResources("natureInverted.jpg")
+    //Greyscale(Image.loadAtResources("nature.jpg")).saveAtResources("natureGrey.jpg")
   }
 }
