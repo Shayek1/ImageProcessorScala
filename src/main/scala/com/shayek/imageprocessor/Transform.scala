@@ -33,6 +33,7 @@ case object Greyscale extends Transform {
       Pixels(makingGrey, makingGrey, makingGrey)
     }
   }
+}
 
 //Colourise - adds a colour filter to the image
 //First greyscaling the image, then adding a colour of the users choice on top.
@@ -48,11 +49,10 @@ case object Greyscale extends Transform {
     }
   }
 
-}
-
 object Transform {
   def main(args: Array[String]): Unit = {
     //Invert(Image.loadAtResources("nature.jpg")).saveAtResources("natureInverted.jpg")
     //Greyscale(Image.loadAtResources("nature.jpg")).saveAtResources("natureGrey.jpg")
+    Colourise(Pixels.BLUE)(Image.loadAtResources("nature.jpg")).saveAtResources("natureBlue.jpg")
   }
 }
